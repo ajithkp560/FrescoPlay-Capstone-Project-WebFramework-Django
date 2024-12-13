@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if blogs %}
+        <ul>
+            {% for blog in blogs %}
+            <h1><a href="blog/{{ blog.id }}/"> {{ blog.title }}</a></h1>
+                <div>{{ blog.content }}</div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
