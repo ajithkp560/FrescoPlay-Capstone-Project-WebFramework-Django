@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from .forms import CustomUserCreationForm, loginForm
+from .forms import CustomUserCreationForm, loginForm, createBlog
 from .models import Blog
 
 def home(request):
@@ -29,7 +29,7 @@ def signup(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
@@ -52,8 +52,8 @@ class IndexView(View):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class CreateBlogView(View):
     def get(self, request):
-        # Render the empty form when the user visits the page
-        return render(request, 'create_blog.html')
+        form = createBlog()
+        return render(request, 'create_blog.html', {'form': form})
 
     def post(self, request):
         title = request.POST['title']

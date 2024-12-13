@@ -77,4 +77,3 @@ class createBlog(forms.Form):
     title = forms.CharField(max_length=200, required=True)
     content = forms.CharField(max_length=1500, required=True)
     blog_photo = forms.ImageField(required=False)
-    created_at = forms.DateTimeField(required=True)
